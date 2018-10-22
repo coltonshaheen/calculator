@@ -6,6 +6,7 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: inherit;
+    user-select: none;
   }
 
 *:focus {
@@ -30,7 +31,7 @@ button {
 }
 
 button:hover, button:active {
-    font-weight: 900;
+    font-weight: bold;
 }
 
 button:active {
@@ -88,13 +89,19 @@ h1 {
     margin: 0 auto;
 }
 
-#clear-btn {
+.operator-btn {
+    color: #f0f0f0;
+    background-color: #444;
+    border: 1px solid #444;
+}
+
+#clear {
     color: white;
     background-color: rgb(233, 48, 85);
     border: 1px solid rgb(233, 48, 85);
 }
 
-#equals-btn {
+#equals {
     background-color: royalblue;
     border: 1px solid royalblue;
     color: white;
