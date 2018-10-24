@@ -7,11 +7,12 @@ const resultDisplay = document.getElementById('result');
 
 let firstOperand = 0;
 let secondOperand = 0;
-let previousOperator = '';
 let result = 0;
+let previousOperator = null;
+
 
 function add(num1, num2) {
-	return num1 + num2;
+	return Number(num1) + Number(num2);
 }
 
 function subtract(num1, num2) {
@@ -23,7 +24,7 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-	return (num2 === 0 && num1 !== 0) ? "UNDEFINED" : (num1 / num2);
+	return (num2 == 0 && num1 != 0) ? "UNDEFINED, IDIOT" : (num1 / num2);
 }
 
 function operate(num1, num2, operator) {
@@ -43,7 +44,7 @@ function initOperation(operator) {
 
 	firstOperand = Number(operandDisplay.textContent);
 	operandDisplay.textContent = '';
-	
+
 	if (operator === 'add') {
 		operatorDisplay.textContent = '+';
 	} else if (operator === 'subtract') {
@@ -58,16 +59,22 @@ function initOperation(operator) {
 function displayOperand(number) {
 	operandText = operandDisplay.textContent.length;
 	if (operandText < NUMBEROFDIGITS) {
-	operandDisplay.textContent += number;
+		operandDisplay.textContent += number;
 	} return;
 }
 
 function compute() {
 	secondOperand = operandDisplay.textContent;
-	
+
 	let result = operate(firstOperand, secondOperand, previousOperator);
+	resultDisplay.textContent = result;
+}
+
+function allClear() {
+	firstOperand = secondOperand = result = 0;
+	previousOperator = null;
 	
-	operandDisplay.textContent = result;
+	resultDisplay.textContent = operandDisplay.textContent = operatorDisplay.textContent = '';
 }
 
 window.onload = function addNumberListeners() {
@@ -86,22 +93,20 @@ window.onload = function addNumberListeners() {
 	});
 }
 
-const buttonPlus = document.getElementById('plus').addEventListener('click', function() {
+const buttonPlus = document.getElementById('plus').addEventListener('click', function () {
 	initOperation('add');
 });
 
-const buttonMinus = document.getElementById('minus').addEventListener('click', function() {
+const buttonMinus = document.getElementById('minus').addEventListener('click', function () {
 	initOperation('subtract');
 });
-const buttonTimes = document.getElementById('times').addEventListener('click', function() {
+const buttonTimes = document.getElementById('times').addEventListener('click', function () {
 	initOperation('multiply');
 });
-const buttonDivided = document.getElementById('divided').addEventListener('click', function() {
+const buttonDivided = document.getElementById('divided').addEventListener('click', function () {
 	initOperation('divide');
 });
 
-const buttonEquals = document.getElementById('equals').addEventListener('click', function() {
-	compute();
-});
+const buttonEquals = document.getElementById('equals').addEventListener('click', compute);
 
-const buttonClear = document.getElementById('clear');
+const buttonClear = document.getElementById('clear').addEventListener('click', allClear);
