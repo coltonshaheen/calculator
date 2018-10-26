@@ -76,12 +76,8 @@ function compute() {
 function allClear() {
 	firstOperand = secondOperand = result = 0;
 	previousOperator = null;
-	
-	resultDisplay.textContent = operandDisplay.textContent = operatorDisplay.textContent = '';
-}
 
-function dealWithKeyboard(e) {
-	if (e.which === '48')
+	resultDisplay.textContent = operandDisplay.textContent = operatorDisplay.textContent = '';
 }
 
 window.onload = function addNumberListeners() {
