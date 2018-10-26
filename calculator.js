@@ -64,10 +64,13 @@ function displayOperand(number) {
 }
 
 function compute() {
-	secondOperand = operandDisplay.textContent;
-
-	let result = operate(firstOperand, secondOperand, previousOperator);
-	resultDisplay.textContent = result;
+	if (previousOperator === null) {
+		resultDisplay.textContent = result = firstOperand = operandDisplay.textContent;
+	} else {
+		secondOperand = operandDisplay.textContent;
+		let result = operate(firstOperand, secondOperand, previousOperator);
+		resultDisplay.textContent = firstOperand = result;
+	}
 }
 
 function allClear() {
@@ -75,6 +78,10 @@ function allClear() {
 	previousOperator = null;
 	
 	resultDisplay.textContent = operandDisplay.textContent = operatorDisplay.textContent = '';
+}
+
+function dealWithKeyboard(e) {
+	if (e.which === '48')
 }
 
 window.onload = function addNumberListeners() {
